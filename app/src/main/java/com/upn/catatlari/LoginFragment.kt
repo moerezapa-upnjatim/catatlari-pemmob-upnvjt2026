@@ -13,16 +13,9 @@ class LoginFragment : Fragment() {
 
     private lateinit var loginBinding: FragmentLoginBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
-        loginBinding = FragmentLoginBinding.inflate(
-            inflater,
-            container,
-            false
-        )
+        loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
 
         return loginBinding.root
     }
@@ -42,9 +35,9 @@ class LoginFragment : Fragment() {
                     Toast.makeText(requireContext(), "Password Anda salah!", Toast.LENGTH_SHORT).show()
                 // jika password benar, maka berpindah ke MainActivity
                 else {
-                    val userLogin = User(email = emailUser, password= passwordUser)
                     // berpindah ke MainActivity
                     val intent = Intent(requireContext(), MainActivity::class.java)
+                    intent.putExtra("user", User(email = emailUser, password= passwordUser))
                     startActivity(intent)
                 }
             }
